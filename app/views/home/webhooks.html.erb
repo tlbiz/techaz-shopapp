@@ -1,0 +1,32 @@
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    ShopifyApp.ready(function(){
+      ShopifyApp.Bar.initialize({ title: "Settings" });
+    });
+  </script>
+<% end %>
+
+<h1>Webhooks:  
+  <%= @webhooks.count%>
+ </h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Topic</th>
+      <th>Endpoint</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @webhooks.each do |webhook| %>
+      <tr>
+        <td>
+          <%= webhook.topic %>
+        </td>
+        <td>
+          <%= webhook.address %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

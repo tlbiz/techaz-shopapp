@@ -1,0 +1,35 @@
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    ShopifyApp.ready(function(){
+      ShopifyApp.Bar.initialize({ title: "Products" });
+    });
+  </script>
+<% end %>
+<h1>Products:  
+  <%= ShopifyAPI::Product.count%>
+ </h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Name</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td>
+          <%= product.id %>
+        </td>
+        <td>
+          <%= link_to product.title, "https://#{@shop_session.domain}/admin/products/#{product.id}", target: "_parent" %>
+        </td>
+        <td>
+          <%= link_to "https://#{@shop_session.domain}/admin/products/#{product.id}", "https://#{@shop_session.domain}/admin/products/#{product.id}", target: "_parent" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

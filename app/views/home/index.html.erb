@@ -1,0 +1,62 @@
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    ShopifyApp.ready(function(){
+      ShopifyApp.Bar.initialize({ title: "Home" });
+    });
+  </script>
+<% end %>
+
+<table class="table">
+  <tbody>
+    <tr>
+      <th>
+        Shop Name
+      </th>
+      <td>
+        <%= @shop.name %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Shop ID
+      </th>
+      <td>
+        <%= @shop.id %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Shop Domain
+      </th>
+      <td>
+        <%= @shop.domain %>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        #of Products
+      </th>
+      <td>
+        <%= link_to ShopifyAPI::Product.count, '/products'%>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        #of Orders
+      </th>
+      <td>
+        <%= link_to ShopifyAPI::Order.count, '/orders'%>
+      </td>
+    </tr>
+    <tr>
+      <th>
+        Webhooks
+      </th>
+      <td>
+        <%= link_to @webhooks.count, '/webhooks' %>
+      </td>
+    </tr>
+  </tbody>
+
+</table>
+<p>TechAZ ShopApp was installed and worked inside your admin page.</p>

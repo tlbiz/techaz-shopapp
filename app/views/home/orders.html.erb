@@ -1,0 +1,35 @@
+<% content_for :javascript do %>
+  <script type="text/javascript">
+    ShopifyApp.ready(function(){
+      ShopifyApp.Bar.initialize({ title: "Orders" });
+    });
+  </script>
+<% end %>
+<h1>Orders:  
+  <%= ShopifyAPI::Order.count%>
+ </h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Order Number</th>
+      <th>Link</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @orders.each do |order| %>
+      <tr>
+        <td>
+          <%= order.id %>
+        </td>
+        <td>
+          <%= link_to order.order_number, "https://#{@shop_session.domain}/admin/orders/#{order.id}", target: "_top" %>
+        </td>
+        <td>
+          <%= link_to "https://#{@shop_session.domain}/admin/orders/#{order.id}", "https://#{@shop_session.domain}/admin/orders/#{order.id}", target: "_top" %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
